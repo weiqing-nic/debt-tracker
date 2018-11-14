@@ -45,17 +45,21 @@ public class TypicalTransactions {
     public static final Transaction JACK_TRANSACTION = new TransactionBuilder().withPerson(TypicalPersons.JACK)
             .withAmount("SGD 42.50")
             .withType("Debt")
-            .withDeadline("19/11/2018").build();
+            .withDeadline("19/12/2018").build();
+    public static final Transaction KIARA_TRANSACTION = new TransactionBuilder().withPerson(TypicalPersons.JACK)
+            .withAmount("SGD 0.00")
+            .withType("Debt")
+            .withDeadline("20/06/2019").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Transaction AMY_TRANSACTION = new TransactionBuilder().withPerson(TypicalPersons.AMY)
             .withAmount("SGD 145.60")
             .withType("Loan")
-            .withDeadline("17/11/2018").build();
+            .withDeadline("17/12/2018").build();
     public static final Transaction BOB_TRANSACTION = new TransactionBuilder().withPerson(TypicalPersons.BOB)
             .withAmount("SGD 42.50")
             .withType("Loan")
-            .withDeadline("12/11/2018").build();
+            .withDeadline("19/12/2018").build();
 
 
     private TypicalTransactions() {} // prevents instantiation

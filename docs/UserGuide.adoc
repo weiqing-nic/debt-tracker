@@ -253,6 +253,7 @@ Transactions matching at least one of the keywords will be returned.
 
 * The following parameters must match a specific format :
 
+
     [tamin/MIN_AMOUNT] [tamax/MAX_AMOUNT] [tdmin/EARLIEST_DATE] [tdmax/LATEST_DATE]
 
 ** `MIN_AMOUNT` and `MAX_AMOUNT` must be a real number rounded to two decimal places. Unlike `AMOUNT`, the currency code should be omitted (e.g. `filter tamin/10.00 tamax/50.00`). +
@@ -285,7 +286,7 @@ Examples: +
 `filter a/tampines;geylang`
 
 * To filter all transactions with amount between 10.00 and 50.00: +
-`filter tamin/10.00 and tamax/50.00`
+`filter tamin/10.00 tamax/50.00`
 
 * To filter all transactions with deadlines between 10/11/2018 and 14/12/2018 (inclusive): +
 `filter tdmin/10/11/2018 tdmax/14/12/2018`
@@ -293,24 +294,24 @@ Examples: +
 * To filter transactions that have addresses containing 'tampines' or 'geylang' OR are tagged with the 'family' tag: +
 `filter a/tampines;geylang t/family or/`
 
-
-=== Filtering transactions by closest deadline: `nt`
+=== Filtering transactions by closest deadline: `nexttransaction`
 
 Filtering and listing out the transaction(s) which deadlines are closest to the current date. +
-"nt" stands for NextTransaction. +
+So user would immediately know when is the next transaction. +
 
 Format: nt
 
 === Locating transactions by substring : `search`
 
-Depending on format, matches the inputted substring with the names of persons involved in current transactions, or in
-past transactions. +
+Depending on the format you use, this command matches a set of any consecutive letters (otherwise known as substring)
+you key in with the names of persons involved in either current transactions, or in past transactions. +
 
 Conditions: +
 
-* The substring must be within the first or last name of a person involved, otherwise an empty list will be returned. +
-* If several substrings are keyed in (eg. search al ice), all contacts in which the first or last names
-contain any of the substrings (in the example, either "al" or "ice") will be returned.
+* The substring that you key in must be within either the first or last name of a person involved only.
+Otherwise, an empty list of transactions will be returned. +
+* If you key in several substrings (eg. search al ice), all contacts in which the first or last names contain any of the
+ substrings (in the example, the substrings are "al" and "ice") will be returned.
 
 Format: +
 To find within current transactions list: search SUBSTRING [MORE_SUBSTRINGS] ... +
@@ -323,24 +324,24 @@ OR search past Yu + F + Pot
 
 === Deleting a transaction : `delete`
 
-Depending on format used, either deletes the specified transaction from the current transaction list only,  +
-or deletes the specified transaction from the past transaction list.
+Depending on the format you use, this command either deletes the specified transaction from the current transaction list
+ only, or deletes the specified transaction from the past transaction list only.
 
 Format:
-Deleting from current transaction list: delete INDEX +
-Deleting from past transaction list: delete past INDEX
+To delete from the current transactions list: delete INDEX +
+To delete from the past transactions list: delete past INDEX
 
 e.g. delete 3 +
 OR delete past 3
 
 === Selecting a transaction : `select`
 
-Depending on the format, selects the transaction identified by the index number used in the current transaction list
-or the past transaction list. +
+Depending on the format you use, this command selects the transaction identified by the index number used in the current
+ transaction list or the past transaction list. +
 
 Format:
-Within current transactions list: select INDEX +
-Within past transactions list: select past INDEX
+To select within the current transactions list: select INDEX +
+To select within the past transactions list: select past INDEX
 
 e.g. select 2 +
 OR select past 2
@@ -353,13 +354,12 @@ Format: history
 
 === Analyzing a possible loan amount : `analytics`
 
-Analyses the amount you have left after taking into consideration your loans, and the amount that you can loan out. A positive amounts indicate a healthy financial balance with a negative amounts indicate a unhealthy financial balance. +
-
+Analyses the amount you have left after taking into consideration your loans, and the amount that you can loan out. A positive value returned indicates a healthy financial balance (defined to be a surplus) whereas a negative amount returned indicates a unhealthy financial balance (defined to be a deficit).
 Format: analytics
 
 === Marking a transaction as Paid : `paid`
 
-Deletes a transaction (that the user deems to have been paid off) from the current transactions list,
+This command deletes a transaction (that you deem to have been paid off) from the current transactions list,
 and adds it to the past transactions list. +
 
 Format: paid INDEX
@@ -368,8 +368,8 @@ e.g. paid 4
 
 === Switching between viewing past and current transactions : `switch`
 
-Depending on input, it will switch to either the Current Transactions tab or the Paid Transactions tab. +
-This is not an undoable command, but you can use switch to change back to the original tab.
+Depending on your input, it will switch to either the Current Transactions tab or the Paid Transactions tab. +
+This is not an undoable command, but you can use this command to go back to your original tab.
 
 Format: switch LIST_TYPE
 
@@ -448,7 +448,7 @@ OR sort deadline +
 Filter : filter[tt/TRANSACTION_TYPE]… +
 
 e.g. filter tt/debt +
-OR filter n/Alex e/example.com tt/debt tamin/SGD 10.00 tdmax/31/12/2018
+OR filter n/Alex e/example.com tt/debt tamin/10.00 tdmax/31/12/2018
 
 Nt (NextTransaction) : nt
 
